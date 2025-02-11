@@ -3,9 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const audios = [
         { nome: "CPF cancelado", src: "audios/CPF CANCELADO.mp3" },
         { nome: "E o PIX ?", src: "audios/E O PIX.mp3" },
-        { nome: "Galvão Bueno ninguém sabe", src: "audios/GALVAO NINGUEM SABE.MP3" },
+        { nome: "Galvão Bueno ninguém sabe", src: "audios/GALVAO NINGUEM SABE.mp3" },
         { nome: "Que isso moreno", src: "audios/QUE ISSO MORENO.mp3" },
-        { nome: "Tu xera", src: "audios/TU XERA.mp3"}
+        { nome: "Tu xera", src: "audios/TU XERA.mp3"},
+        { nome: "Ai cachorro", src:"audios/AI CACHORRO.mp3"},
+        { nome: "Vai entrar o grosso", src:"audios/VAI ENTRAR O GROSSO.mp3" }
     ];
 
     // Seleciona a seção onde os áudios serão inseridos
