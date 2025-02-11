@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e5ddd5; /* Fundo semelhante ao WhatsApp */
+}
+
+header {
+    background-color: #25D366; /* Verde do WhatsApp */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+#audios-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.audio-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(50% - 20px); /* Melhor adaptação */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilizando o título do áudio */
+.audio-item h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #075E54; /* Verde escuro do WhatsApp */
+}
+
+.audio-item audio {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.audio-item .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.audio-item button {
+    flex: 1;
+    background-color: #25D366; /* Verde WhatsApp */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.audio-item button:hover {
+    background-color: #1EBE5D;
+}
+
+.audio-item button.share {
+    background-color: #34B7F1; /* Azul para compartilhar */
+}
+
+.audio-item button.share:hover {
+    background-color: #1E90D9;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    .audio-item {
+        width: 100%;
+    }
+}
+footer {
+    text-align: center;
+}
