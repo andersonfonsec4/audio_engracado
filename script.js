@@ -1,78 +1,91 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Lista de áudios com nome e caminho do arquivo
-    const audios = [
-        { nome: "CPF cancelado", src: "audios/CPF CANCELADO.mp3" },
-        { nome: "E o PIX ?", src: "audios/E O PIX.mp3" },
-        { nome: "Galvão Bueno ninguém sabe", src: "audios/GALVAO NINGUEM SABE.mp3" },
-        { nome: "Que isso moreno", src: "audios/QUE ISSO MORENO.mp3" },
-        { nome: "Tu xera", src: "audios/TU XERA.mp3"},
-        { nome: "Ai cachorro", src:"audios/AI CACHORRO.mp3"},
-        { nome: "Vai entrar o grosso", src:"audios/VAI ENTRAR O GROSSO.mp3" }
-    ];
+// Lista de áudios (pode ser substituída por uma chamada a uma API ou banco de dados)
+const audios = [
+    {
+        title: "Ai cachorro",
+        file: "audios/AI CACHORRO.mp3"
+    },
+    {
+        title: "CPF cancelado",
+        file: "audios/CPF CANCELADO.mp3"
+    },
+    {
+        title: "E o PIX ?",
+        file: "audios/E O PIX.mp3"
+    },
+    {
+        title: "Ninguém sabe",
+        file: "audios/GALVAO NINGUEM SABE.mp3"
+    },
+    {
+        title: "Que isso moreno",
+        file: "audios/QUE ISSO MORENO.mp3"
+    },
+    {
+        title: "Tu xera",
+        file: "audios/TU XERA.mp3"
+    },
+    {
+        title: "Vai entrar o grosso",
+        file: "audios/VAI ENTRAR O GROSSO.mp3"
+    }
 
-    // Seleciona a seção onde os áudios serão inseridos
-    const audioList = document.getElementById("audios-list");
+];
 
-    // Gera dinamicamente os elementos HTML para os áudios
-    audios.forEach(audio => {
-        const audioItem = document.createElement("div");
-        audioItem.classList.add("audio-item");
+// Função para criar um card de áudio
+function createAudioCard(audio) {
+    const article = document.createElement("article");
+    article.classList.add("audio-card");
+    article.setAttribute("aria-label", `Áudio: ${audio.title}`);
 
-        // Criando título do áudio
-        const titulo = document.createElement("h3");
-        titulo.textContent = audio.nome;
+    const title = document.createElement("h3");
+    title.classList.add("audio-title");
+    title.textContent = audio.title;
 
-        // Criando player de áudio
-        const audioElement = document.createElement("audio");
-        audioElement.setAttribute("controls", "");
-        const sourceElement = document.createElement("source");
-        sourceElement.setAttribute("src", audio.src);
-        sourceElement.setAttribute("type", "audio/mpeg");
-        audioElement.appendChild(sourceElement);
+    const audioElement = document.createElement("audio");
+    audioElement.controls = true;
+    const source = document.createElement("source");
+    source.src = audio.file;
+    source.type = "audio/mpeg";
+    audioElement.appendChild(source);
+    audioElement.innerHTML += "Seu navegador não suporta o elemento de áudio.";
 
-        // Criando container de botões
-        const buttonContainer = document.createElement("div");
-        buttonContainer.classList.add("buttons");
+    const downloadLink = document.createElement("a");
+    downloadLink.href = audio.file;
+    downloadLink.download = audio.file;
+    downloadLink.classList.add("download-button");
+    downloadLink.textContent = "Baixar Áudio";
 
-        // Botão de Download estilizado
-        const downloadButton = document.createElement("button");
-        downloadButton.classList.add("download");
-        downloadButton.textContent = "⬇ Baixar";
-        downloadButton.onclick = () => baixar(audio.src);
+    article.appendChild(title);
+    article.appendChild(audioElement);
+    article.appendChild(downloadLink);
 
-        // Botão de Compartilhar no WhatsApp
-        const shareButton = document.createElement("button");
-        shareButton.classList.add("share");
-        shareButton.textContent = "📤 WhatsApp";
-        shareButton.onclick = () => compartilhar(audio.src);
-
-        // Adicionando botões ao container
-        buttonContainer.appendChild(downloadButton);
-        buttonContainer.appendChild(shareButton);
-
-        // Adicionando elementos ao item de áudio
-        audioItem.appendChild(titulo);
-        audioItem.appendChild(audioElement);
-        audioItem.appendChild(buttonContainer);
-
-        // Adicionando o item de áudio à lista
-        audioList.appendChild(audioItem);
-    });
-});
-
-// Função para compartilhar no WhatsApp
-function compartilhar(audioSrc) {
-    const url = encodeURIComponent(window.location.origin + "/" + audioSrc);
-    const whatsappLink = `https://api.whatsapp.com/send?text=🔥 Ouça esse áudio engraçado! ${url}`;
-    window.open(whatsappLink, "_blank");
+    return article;
 }
 
-// Função para baixar o áudio
-function baixar(audioSrc) {
-    const link = document.createElement("a");
-    link.href = audioSrc;
-    link.setAttribute("download", "");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+// Função para carregar os áudios na página
+function loadAudios() {
+    const audioContainer = document.getElementById("audio-container");
+
+    if (audioContainer) {
+        audios.forEach(audio => {
+            const audioCard = createAudioCard(audio);
+            audioContainer.appendChild(audioCard);
+        });
+    } else {
+        console.error("Container de áudios não encontrado!");
+    }
 }
+
+// Atualiza o ano dinamicamente no rodapé
+function updateYear() {
+    const yearElement = document.getElementById("current-year");
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
+// Carrega os áudios e atualiza o ano quando a página for carregada
+window.onload = function () {
+    loadAudios();
+    updateYear();
+};

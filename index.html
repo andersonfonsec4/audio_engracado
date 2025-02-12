@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Baixe e compartilhe os melhores áudios engraçados para WhatsApp!">
     <title>Áudios Engraçados para WhatsApp</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <header>
+    <header role="banner">
         <h1>Áudios Engraçados para WhatsApp</h1>
         <p>Baixe e compartilhe os melhores áudios engraçados!</p>
     </header>
 
-    <main>
-        <section id="audios-list">
-            <!-- Os áudios serão inseridos dinamicamente via JavaScript -->
+    <main role="main">
+        <section id="audios-list" aria-labelledby="audios-section-title">
+            <h2 id="audios-section-title" class="sr-only">Lista de Áudios</h2>
+            <div id="audio-container" class="audio-grid">
+                <!-- Áudios serão carregados dinamicamente via JavaScript -->
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Site de Áudios Engraçados</p>
+    <footer role="contentinfo">
+        <p>&copy; <span id="current-year">2025</span> Site de Áudios Engraçados. Todos os direitos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
